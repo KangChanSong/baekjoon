@@ -3,6 +3,8 @@ package com.bronze;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Bronze1Problems {
@@ -61,5 +63,60 @@ public class Bronze1Problems {
                 return;
             }
         }
+    }
+
+    public static void problem1157_mine(BufferedReader reader, BufferedWriter writer) throws IOException {
+        char[] alphs = reader.readLine().toUpperCase().toCharArray();
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        for(char c : alphs) {
+            if (map.containsKey(c)) {
+                Integer value = map.get(c);
+                map.put(c, ++value);
+            } else {
+                map.put(c, 1);
+            }
+        }
+
+        char result = ' ';
+        int maxCount = 0;
+        for(Object key : map.keySet().toArray()) {
+            char keyChar = (char) key;
+            Integer currVal = map.get(keyChar);
+            if (currVal == maxCount) {
+                result = '?';
+            }
+
+            if (currVal > maxCount) {
+                result = keyChar;
+                maxCount = currVal;
+            }
+        }
+
+        writer.write(String.valueOf(result));
+        writer.flush();
+        writer.close();
+    }
+
+    // ASCII CODE
+    // a,b,c...  = 97,98,99...
+    // A,B,C...  = 65,66,67...
+    // ?         = 63
+    public static void problem1157_best() throws IOException {
+        int[] a = new int[26]; // 0 = A, 1 = B, 2 = C...
+        int c, max = 0, maxa = -2;
+
+        while ((c = System.in.read()) > 64) {
+            a[c -= c < 96 ? 65 : 97]++;
+
+            if (max < a[c]) {
+                max = a[c];
+                maxa = c;
+            } else if (max == a[c])
+                maxa = -2;
+        }
+
+        System.out.print((char)(maxa + 65));
     }
 }
