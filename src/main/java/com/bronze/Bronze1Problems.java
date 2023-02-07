@@ -3,6 +3,7 @@ package com.bronze;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class Bronze1Problems {
     public static void problem1032(BufferedReader reader, BufferedWriter writer) throws IOException {
@@ -40,5 +41,25 @@ public class Bronze1Problems {
 
         writer.write(String.valueOf(count));
         writer.close();
+    }
+
+    public static void problem1145(BufferedReader reader, BufferedWriter writer) throws IOException {
+        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+        int[] numbers = new int[5];
+        for (int i = 0 ; i < 5 ; i++) {
+            numbers[i] = Integer.parseInt(tokenizer.nextToken());
+        }
+
+        for (int i = 1; i < 1000000 ; i++) {
+            int divCount = 0;
+            for (int number : numbers) if (i % number == 0) divCount++;
+
+            if (divCount > 2) {
+                writer.write(String.valueOf(i));
+                writer.flush();
+                writer.close();
+                return;
+            }
+        }
     }
 }
