@@ -119,4 +119,36 @@ public class Bronze1Problems {
 
         System.out.print((char)(maxa + 65));
     }
+
+    public static void problem1236(BufferedReader reader, BufferedWriter writer) throws IOException {
+        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+        int m = Integer.parseInt(tokenizer.nextToken());
+        int n = Integer.parseInt(tokenizer.nextToken());
+
+        char[][] chars = new char[m][n];
+
+        int c = 0;
+        int r = m;
+
+        for (int i = 0 ; i < m ; i++) {
+            String input = reader.readLine();
+            if (input.contains("X")) r--;
+            chars[i] = input.toCharArray();
+        }
+
+        for (int i = 0 ; i < n ; i++) {
+            boolean isX = false;
+            for(int j = 0 ; j < m ; j++) {
+                if (chars[j][i] == 'X') {
+                    isX = true;
+                    break;
+                }
+            }
+            if (!isX) c++;
+        }
+
+        writer.write(String.valueOf(Math.max(r, c)));
+        writer.flush();
+        writer.close();
+    }
 }
