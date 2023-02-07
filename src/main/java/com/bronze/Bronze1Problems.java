@@ -151,4 +151,41 @@ public class Bronze1Problems {
         writer.flush();
         writer.close();
     }
+    public static void problem1259_mine(BufferedReader reader, BufferedWriter writer) throws IOException {
+        String[] results = new String[1000000];
+
+        int currIdx = 0;
+        while (true) {
+            String numStr = reader.readLine();
+            if (numStr.equals("0")) break;
+
+            int sameCount = 0;
+            int strLength = numStr.length();
+            for(int i = 0; i < strLength / 2 ; i++) {
+                if (numStr.charAt(i) == numStr.charAt(strLength - (i + 1))) {
+                    sameCount++;
+                };
+            }
+            if (sameCount == strLength / 2) {
+                results[currIdx] = "yes\n";
+            } else {
+                results[currIdx] = "no\n";
+            }
+            currIdx++;
+        }
+
+        for (int i = 0 ; i < results.length ; i++) {
+            if (results[i] == null) break;
+            writer.write(results[i]);
+        }
+        writer.flush();
+        writer.close();
+    }
+
+    public static void problem1259_best(BufferedReader reader) throws IOException {
+        String s;
+        while (!(s = reader.readLine()).equals("0")) {
+            System.out.println(s.equals(new StringBuilder(s).reverse().toString()) ? "yes" : "no");
+        }
+    }
 }
