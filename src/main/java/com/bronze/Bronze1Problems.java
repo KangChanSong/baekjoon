@@ -231,4 +231,30 @@ public class Bronze1Problems {
         writer.flush();
         writer.close();
     }
+
+    public static void problem1292(BufferedReader reader, BufferedWriter writer) throws IOException {
+        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+        int a = Integer.parseInt(tokenizer.nextToken());
+        int b = Integer.parseInt(tokenizer.nextToken());
+
+        int sum = 0;
+        int count = 0;
+        for (int i = 1 ; i < Integer.MAX_VALUE; i++) {
+            boolean br = false;
+            for (int j = 0 ; j < i ; j++) {
+                if (count++ == b) {
+                    br = true;
+                    break;
+                }
+                if (count >= a) {
+                    sum+=i;
+                }
+            }
+            if (br) break;
+        }
+
+        writer.write(String.valueOf(sum));
+        writer.flush();
+        writer.close();
+    }
 }
