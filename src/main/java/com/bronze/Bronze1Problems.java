@@ -188,4 +188,47 @@ public class Bronze1Problems {
             System.out.println(s.equals(new StringBuilder(s).reverse().toString()) ? "yes" : "no");
         }
     }
+
+    public static void problem1268(BufferedReader reader, BufferedWriter writer) throws IOException {
+        int m = Integer.parseInt(reader.readLine());
+
+        int[] res = new int[m];
+        int[][] info = new int[m][5];
+        int[][] dupinf = new int[m][m];
+
+        // 입력
+        for(int i = 0 ; i < m ; i++) {
+            String[] istrs = reader.readLine().split(" ");
+            for (int j = 0 ; j < 5 ; j++)
+                info[i][j] = Integer.valueOf(istrs[j]);
+        }
+
+        for(int i = 0 ; i < 5 ; i++ ) {
+            for(int j = 0 ; j < m ; j++) {
+                for(int k = 0 ; k < m ; k++) {
+                    if (j == k) continue;
+                    if (dupinf[j][k] == 1) continue;
+
+                    if(info[j][i] == info[k][i]) {
+                        dupinf[j][k] = 1;
+                        res[j]++;
+                    }
+                }
+            }
+        }
+
+        // 정답 추출
+        int max = 0;
+        int result = 0;
+        for(int i = m-1 ; i >= 0 ; i--) {
+            if (max <= res[i]) {
+                max = res[i];
+                result = i;
+            }
+        }
+
+        writer.write(String.valueOf(result+1));
+        writer.flush();
+        writer.close();
+    }
 }
