@@ -6,6 +6,7 @@ public class P1526 {
     private static int N;
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
         N = toInt(reader.readLine());
         System.out.println(N < 7 ? 4 : Math.max(solve("4"), solve("7")));
     }
