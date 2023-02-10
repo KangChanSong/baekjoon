@@ -11,12 +11,14 @@ public class P1546 {
         int len = Integer.parseInt(br.readLine());
         double max = 0;
         double sum = 0;
+
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i=0; i<len ; i++) {
             double s = Double.parseDouble(st.nextToken());
             if (max < s)  max = s;
             sum+=s;
         }
+
         System.out.println(sum / max / (double) len * 100.0);
     }
 }
