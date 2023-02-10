@@ -9,7 +9,7 @@ public class P1181 {
         int len = Integer.parseInt(br.readLine());
         String[] r = new String[len];
 
-        // Arrays.sort 사용하면 금방 해결될 문제였음...
+        // Arrays.sort 사용하면 금방 해결될 문제였음... 성능도 수배 좋음
         for (int i = 0;  i < len ; i++ ) {
             String input = br.readLine();
             r[i] = input;
