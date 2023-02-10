@@ -26,7 +26,7 @@ public class P1010 {
         bw.close();
     }
     private static int solve(int limit, int[] arr, int count) {
-        int temp = 0;
+        int temp;
         for (int i = 0 ; i  < arr.length ; i++) {
             temp = 0;
             for (int j = i ; j < arr.length ; j++) {
